@@ -21,3 +21,23 @@ def fetch_schedule(auth: str) -> list[dict] | None:
     if "data" in json:
         return json["data"]
     return None
+
+
+def parse_schedule(schedule: list[dict]) -> dict:
+    result = {}
+
+    for day in schedule:
+        date = day["date"]
+        pairs = day["lessons"]
+
+        print(date)
+        for pair in pairs:
+            p_name = pair["subject"]
+            p_type = pair["type"]
+            p_ts = pair["time_start"]
+            p_te = pair["time_end"]
+            p_teacher = pair["teacher_name"]
+
+            print(p_name, p_type, p_ts, p_te, p_teacher)
+
+    return result
