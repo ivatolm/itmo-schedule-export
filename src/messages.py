@@ -10,5 +10,13 @@ START_MESSAGE = (
     " via cookie you give to this bot. "
     "Beware, that giving cookie gives this bot full access to your account. "
     "If you do not trust it, then you can host your own version of the bot. "
-    f"All sources are avaliable at github [repo]({REPO_LINK})."
+    f"All sources are avaliable at github [repo]({REPO_LINK})"
+)
+
+GET_URL_MESSAGE = (
+    "Please, send you authorization hash"
+)
+
+UNKNOWN_CMD_MESSAGE = (
+    "Sorry, but I don't understand this command"
 )
