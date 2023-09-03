@@ -1,4 +1,5 @@
 from bot import Bot
+from server import SERVER_THREAD
 
 
 def parse_token(filename: str = "token.key") -> str | None:
@@ -19,3 +20,8 @@ if token is None:
 
 bot = Bot(token)
 bot.run()
+
+try:
+    SERVER_THREAD.join(0.1)
+except Exception:
+    pass

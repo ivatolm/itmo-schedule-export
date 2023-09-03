@@ -57,9 +57,16 @@ class Bot:
         with bot.retrieve_data(message.from_user.id, message.chat.id) as data:
             data["auth"] = message.text
 
-        schedule = itmo.fetch_schedule(data["auth"])
-        if schedule is None:
+        data = itmo.fetch_schedule(data["auth"])
+        if data is None:
             bot.send_message(message.chat.id, UNKNOWN_CMD_MESSAGE)
             return
 
-        itmo.parse_schedule(schedule)
+        schedule = itmo.parse_schedule(data)
+        schedule_ics = itmo.cnvt_schedule_to_ics(schedule)
+
+        with open(f"res/{message.chat.id}.ics", "w", encoding="utf-8") as file:
+            file.write(schedule_ics)
+
+        url = f"https://91.203.188.188:5000/schedule/{message.chat.id}"
+        bot.send_message(message.chat.id, url)
